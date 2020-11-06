@@ -1,33 +1,23 @@
-import { GET_EXPLORE_PHOTOS, GET_EXPLORE_VIDEOS, LOADING } from "./actionTypes";
-const initialState: initState = {
-  photos: [],
-  videos: [],
-  loading: false,
+import * as actionTypes from "./actionTypes";
+const initialState: PreviewState = {
+  preview: undefined,
 };
-const reducer = (state: initState = initialState, action: any): initState => {
+const reducer = (
+  state: PreviewState = initialState,
+  action: PreviewAction
+): PreviewState => {
   switch (action.type) {
-    case LOADING:
-      const loading: boolean = action.loading;
-      return {
-        ...state,
-        loading: loading,
+    case actionTypes.SET_PREVIEW:
+      const newPreview: Preview = {
+        poster: action.preview.poster,
+        url: action.preview.url,
       };
-    case GET_EXPLORE_PHOTOS:
-      const oldPhotos = state.photos;
-      const photos: IPhoto[] | undefined = oldPhotos?.concat(action.photos);
       return {
         ...state,
-        photos: photos,
-      };
-    case GET_EXPLORE_VIDEOS:
-      const oldVideos = state.videos;
-      const videos: IVideo[] | undefined = oldVideos?.concat(action.videos);
-      return {
-        ...state,
-        videos: videos,
+        preview: newPreview,
       };
     default:
-      return { ...state };
+      return { ...state, preview: undefined };
   }
 };
 
