@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import BaseRouter from "./routes/routes";
+import MainContainer from "./Containers/MainContainer/MainContainer";
+
 export default function App() {
   return (
     <Router>
-      <BaseRouter />
+      <MainContainer />
     </Router>
   );
 }
